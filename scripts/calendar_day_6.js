@@ -1,7 +1,7 @@
 var day_6 = {
   id: 6,
   date: "2021-09-06",
-  ended: false,
+  state: 0,
   round: [
     {
       teams: [1, 2],

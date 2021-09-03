@@ -140,7 +140,9 @@ var app = new Vue({
             { round: [0, 0] }
           );
         }
-        chart[idx] = Array.from(this.sort(tea));
+        if (g.state != 0) {
+          chart[idx] = Array.from(this.sort(tea));
+        }
       });
       return { giorn, tea };
     },
