@@ -1,0 +1,108 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <title>Giornata</title>
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <form id="round">
+        <div class="row bg-light">
+          <div class="col-4">
+            Giornata: <input type="number" v-model="day.id" />
+          </div>
+          <div class="col-4">
+            Data: <input type="date" v-model="day.date" />
+          </div>
+          <div class="col-4">
+            Stato:
+            <select v-model="day.state">
+              <option
+                v-for="stateOption in states"
+                v-bind:value="stateOption.id"
+              >
+                {{ stateOption.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row mt-3 mb-3 border pt-2 pb-2" v-for="cycle in [1, 2]">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-6" v-for="t in [1, 2]">
+                Squadra:
+                <select
+                  v-model="day.round[cycle - 1].teams[t - 1]"
+                  @change="updateTeam(cycle - 1, t - 1)"
+                >
+                  <option v-for="team in teams" v-bind:value="team.id">
+                    {{ team.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row" v-for="m in [1,2,3]">
+              <div class="col-1">Liv.{{setLivello(m, cycle - 1, m - 1)}}</div>
+              <div
+                class="col-4"
+                v-for="t in [1, 2]"
+                v-bind:class="t == 2 ? 'offset-1' : ''"
+              >
+                <div class="row pt-2 pb-2 border">
+                  <div class="col-4" v-for="p in [0, 1]">
+                    <select
+                      v-model="day.round[cycle - 1].matches[m - 1].teams[t - 1].players[p]"
+                    >
+                      <option
+                        v-for="player in getPlayersByTeamAndLevel(day.round[cycle - 1].teams[t - 1], m + (m > 0 ? m - 1 : 0) + p)"
+                        v-bind:value="player.id"
+                      >
+                        {{ player.lastname }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-2">
+                <div class="row">
+                  <div
+                    class="col-4"
+                    v-for="s in [1, 2, 3]"
+                    v-bind:class="s == 3 ? 'd-none' : ''"
+                    v-bind:id="''.concat((cycle - 1), '_', (m - 1), '_', (s - 1))"
+                  >
+                    <input
+                      type="text"
+                      style="width: 24px"
+                      v-model="day.round[cycle - 1].matches[m - 1].sets[s - 1][t - 1]"
+                      v-for="t in [1, 2]"
+                      @change="checkThirdSet(cycle - 1, m - 1)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <textarea rows="20" cols="200">{{ day }}</textarea>
+    </div>
+  </body>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <script src="scripts/teams.js"></script>
+  <script src="scripts/manage.js"></script>
+</html>

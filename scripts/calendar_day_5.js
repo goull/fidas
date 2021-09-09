@@ -11,65 +11,73 @@ var day_5 = {
           teams: [
             {
               id: 1,
-              players: [],
+              players: [101, 104],
             },
             {
-              id: 2,
-              players: [],
+              id: 4,
+              players: [401, 404],
             },
           ],
-          sets: [[], [], []],
+          sets: [
+            [5, 7],
+            [7, 6],
+            [11, 13],
+          ],
         },
         {
           livello: "34",
           teams: [
-            { id: 1, players: [] },
-            { id: 2, players: [] },
+            { id: 1, players: [105, 108] },
+            { id: 4, players: [406, 408] },
           ],
-          sets: [[], [], []],
+          sets: [
+            [6, 3],
+            [3, 6],
+            [15, 13],
+          ],
         },
         {
           livello: "56",
           teams: [
-            { id: 1, players: [] },
-            { id: 2, players: [] },
+            { id: 1, players: [110, 112] },
+            { id: 4, players: [410, 411] },
           ],
-          sets: [[], [], []],
+          sets: [[3, 6], [1, 6], []],
         },
       ],
     },
     {
-      teams: [3, 2],
+      teams: [2, 3],
       matches: [
         {
           livello: "12",
           teams: [
             {
-              id: 1,
-              players: [],
+              id: 2,
+              players: [202, 203],
             },
             {
-              id: 2,
+              id: 3,
               players: [],
             },
           ],
-          sets: [[], [], []],
+          sets: [[0, 6], [0, 6], []],
         },
         {
           livello: "34",
           teams: [
-            { id: 1, players: [] },
-            { id: 2, players: [] },
+            { id: 2, players: [206, 207] },
+            { id: 3, players: [306, 308] },
           ],
-          sets: [[], [], []],
+          sets: [[6, 2], [7, 5], []],
         },
         {
           livello: "56",
           teams: [
-            { id: 1, players: [] },
-            { id: 2, players: [] },
+            { id: 2, players: [210, 211] },
+            { id: 3, players: [309, 311] },
           ],
-          sets: [[], [], []],
+          sets: [[1, 6], [2, 6], []],
         },
       ],
     },
